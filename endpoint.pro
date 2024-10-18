@@ -9,17 +9,17 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    endpointmainwidget.cpp \
-    main.cpp \
-    endpointmainwindow.cpp \
-    navigationwidget.cpp \
-    viewportwidget.cpp
+    src/endpointmainwidget.cpp \
+    src/main.cpp \
+    src/endpointmainwindow.cpp \
+    src/navigationwidget.cpp \
+    src/viewportwidget.cpp
 
 HEADERS += \
-    endpointmainwidget.h \
-    endpointmainwindow.h \
-    navigationwidget.h \
-    viewportwidget.h
+    src/endpointmainwidget.h \
+    src/endpointmainwindow.h \
+    src/navigationwidget.h \
+    src/viewportwidget.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
