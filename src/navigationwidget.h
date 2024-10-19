@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QLineEdit>
+#include <QListView>
+#include <QStringListModel>
 
 class NavigationWidget : public QWidget
 {
@@ -15,6 +17,11 @@ public:
 private:
     QPushButton *createCollectionButton;
     QLineEdit *createCollectionInput;
+    QListView *collectionsListView;
+    QStringListModel *collectionList;
+
+private slots:
+    void handleCreateCollectionButtonClicked();
 
 signals:
 };
