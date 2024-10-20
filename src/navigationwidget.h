@@ -18,10 +18,16 @@ private:
     QPushButton *createCollectionButton;
     QLineEdit *createCollectionInput;
     QListView *collectionsListView;
-    QStringListModel *collectionList;
+    QStringListModel *collectionsList;
+
+    QLineEdit *createEndpointInput;
+    QPushButton *createEndpointButton;
+    QListView *endpointsListView;
+    QStringListModel *endpointsList;
 
 private slots:
     void handleCreateCollectionButtonClicked();
+    void handleCreateEndpointButtonClicked();
 
 signals:
 };
