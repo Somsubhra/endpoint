@@ -7,10 +7,26 @@
 #include <QStringListModel>
 #include <QMessageBox>
 
+#include "collectionmodel.h"
+
 NavigationWidget::NavigationWidget(QWidget *parent)
     : QWidget{parent}
 {
+    this->collectionDataManager = new CollectionDataManager(this, this);
+    setupUI();
+    connect(this->createCollectionButton, &QPushButton::clicked, this, &NavigationWidget::handleCreateCollectionButtonClicked);
+    connect(this->createEndpointButton, &QPushButton::clicked, this, &NavigationWidget::handleCreateEndpointButtonClicked);
+}
 
+NavigationWidget::~NavigationWidget() {
+    delete this->createCollectionButton;
+    delete this->createCollectionInput;
+    delete this->collectionsList;
+    delete this->collectionsListView;
+    delete this->collectionDataManager;
+}
+
+void NavigationWidget::setupUI() {
     QGridLayout *navigationWidgetLayout = new QGridLayout(this);
 
     QLabel *collectionsLabel = new QLabel(this);
@@ -49,17 +65,7 @@ NavigationWidget::NavigationWidget(QWidget *parent)
     this->endpointsListView->setModel(this->endpointsList);
     navigationWidgetLayout->addWidget(this->endpointsListView, 7, 0);
 
-    this->setLayout(navigationWidgetLayout);    
-
-    connect(this->createCollectionButton, &QPushButton::clicked, this, &NavigationWidget::handleCreateCollectionButtonClicked);
-    connect(this->createEndpointButton, &QPushButton::clicked, this, &NavigationWidget::handleCreateEndpointButtonClicked);
-}
-
-NavigationWidget::~NavigationWidget() {
-    delete this->createCollectionButton;
-    delete this->createCollectionInput;
-    delete this->collectionsList;
-    delete this->collectionsListView;
+    this->setLayout(navigationWidgetLayout);
 }
 
 void NavigationWidget::handleCreateCollectionButtonClicked() {
@@ -72,6 +78,9 @@ void NavigationWidget::handleCreateCollectionButtonClicked() {
     QStringList currentCollections = this->collectionsList->stringList();
     currentCollections.append(newCollectionName);
     this->collectionsList->setStringList(currentCollections);
+
+    CollectionModel *collection = new CollectionModel(this, newCollectionName);
+    this->collectionDataManager->insert(collection);
 }
 
 void NavigationWidget::handleCreateEndpointButtonClicked() {

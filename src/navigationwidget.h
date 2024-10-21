@@ -6,6 +6,7 @@
 #include <QLineEdit>
 #include <QListView>
 #include <QStringListModel>
+#include "collectiondatamanager.h"
 
 class NavigationWidget : public QWidget
 {
@@ -24,6 +25,10 @@ private:
     QPushButton *createEndpointButton;
     QListView *endpointsListView;
     QStringListModel *endpointsList;
+
+    CollectionDataManager *collectionDataManager;
+
+    void setupUI();
 
 private slots:
     void handleCreateCollectionButtonClicked();
